@@ -1,0 +1,21 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: infomaniak-webhook
+  namespace: cert-manager
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: deploy/infomaniak-webhook
+      sourceRef:
+        kind: GitRepository
+        name: infomaniak-webhook
+  values:
+    groupName: kik.blue
+    image:
+      tag: v0.3.1
+    secretsNames:
+      - infomaniak-api-token
+

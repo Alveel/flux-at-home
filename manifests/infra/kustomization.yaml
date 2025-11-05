@@ -1,6 +1,31 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
-resources:
-- cert-manager
-- external-secrets
+metadata:
+  name: external-secrets
+spec:
+  path: ./external-secrets
+  dependsOn:
+    - name: cert-manager
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: secrets-external
+spec:
+  path: ./secrets
+  dependsOn:
+    - name: external-secrets
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: cert-manager-issuers
+spec:
+  path: ./cert-manager/issuers
+  dependsOn:
+    - name: secrets-external
+    - name: cert-manager
 
