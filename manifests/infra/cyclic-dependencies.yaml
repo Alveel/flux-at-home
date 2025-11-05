@@ -3,29 +3,47 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: external-secrets
+  namespace: flux-system
 spec:
-  path: ./external-secrets
+  interval: 10m
+  prune: true
+  path: ./manifests/infra/external-secrets
   dependsOn:
     - name: cert-manager
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
 
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: secrets-external
+  namespace: flux-system
 spec:
-  path: ./secrets
+  interval: 10m
+  prune: true
+  path: ./manifests/infra/secrets
   dependsOn:
     - name: external-secrets
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
 
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: cert-manager-issuers
+  namespace: flux-system
 spec:
-  path: ./cert-manager/issuers
+  interval: 10m
+  prune: true
+  path: ./manifests/infra/cert-manager/issuers
   dependsOn:
     - name: secrets-external
     - name: cert-manager
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
 
