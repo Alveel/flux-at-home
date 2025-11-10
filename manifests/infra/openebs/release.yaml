@@ -15,6 +15,14 @@ spec:
         name: openebs
         namespace: helm-sources
   values:
+    engines:
+      replicated:
+        mayastor:
+          enabled: false
+    alloy:
+      enabled: false
+    loki:
+      enabled: false
     zfs-localpv:
       zfsNode:
         kubeletDir: /var/lib/rancher/k3s
