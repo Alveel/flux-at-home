@@ -16,6 +16,9 @@ spec:
         namespace: helm-sources
   values:
     engines:
+      local:
+        lvm:
+          enabled: false
       replicated:
         mayastor:
           enabled: false
