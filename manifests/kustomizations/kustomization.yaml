@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- 10-cert-manager.yaml
+- 20-cert-manager-selfsigned-issuers.yaml
+- 30-external-secrets.yaml
+- 35-secret-stores.yaml
+- 40-secrets-external.yaml
+- 50-cert-manager-issuers.yaml
+- infra-other.yaml
