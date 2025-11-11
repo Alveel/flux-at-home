@@ -7,6 +7,7 @@ parameters:
   poolname: "biggy/data/kubernetes"
   recordsize: "128k"
 provisioner: zfs.csi.openebs.io
+reclaimPolicy: Retain
 allowedTopologies:
 - matchLabelExpressions:
   - key: kubernetes.io/hostname
