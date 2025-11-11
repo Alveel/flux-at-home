@@ -5,5 +5,4 @@ resources:
 - helmrepository.yaml
 - release.yaml
 - bitwarden-certificate.yaml
-- bitwarden-clustersecretstore.yaml
 
