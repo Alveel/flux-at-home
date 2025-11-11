@@ -1,0 +1,16 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: bootstrap-issuers
+  namespace: flux-system
+spec:
+  interval: 10m
+  prune: true
+  path: ./infra/cert-manager/bootstrap
+  dependsOn:
+    - name: cert-manager
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+
